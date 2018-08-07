@@ -45,11 +45,11 @@ server <- function(input, output, session){
   })
   observeEvent(input$radio10, {
     system('curl "http://localhost:5005/tunein/play/16793"')
-    system('python python_camera.py radio10')
+    system('python camera_python.py radio10')
   })
   observeEvent(input$m80, {
     system('curl "http://localhost:5005/tunein/play/48753"')
-    system('python python_camera.py m80')
+    system('python camera_python.py m80')
   })
   observeEvent(input$go, {
     # forcing shiny to get the latest input from the textInput
@@ -60,7 +60,7 @@ server <- function(input, output, session){
   })
   observeEvent(input$text, {
     type <- input$type
-    system(paste0('python python_camera.py ',input$text))
+    system(paste0('python camera_python.py ',input$text))
     if (type != "radio") {
       term <- gsub("\\ ","+",input$text)
       req = paste0('curl "','http://localhost:5005/musicsearch/spotify/',
